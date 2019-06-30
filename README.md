@@ -16,7 +16,7 @@ unplug and replug both dongles.
 
 **(3) Run the following  bash command:**
 
-`sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/two-receivers/master/two-receivers.sh)"`
+`sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/two-receivers/master/2-receivers.sh)"`
 
 **(4) Add piaware feeder-id for 2 stations**
 
