@@ -124,21 +124,20 @@ echo "Enabling & starting piaware2"
 sudo systemctl enable piaware2
 sudo systemctl start piaware2
 
-
-
-
 echo -e "\e[32m===============\e[39m"
 echo -e "\e[32mALL DONE !\e[39m"
 echo -e "\e[32m===============\e[39m"
-echo -e "If you dont have any stations/feeder-ids, go to flightaware claim page and claim both receivers"
+echo -e "If you dont have stations/feeder-ids for both stations, " 
+echo -e "go to following page and claim both NEW Stations"
+echo -e "https://flightaware.com/adsb/piaware/claim"
 echo -e ""
 echo -e "If you have existing feeder-ids, follow steps below:"
-echo -e "(1) For 1st feeder add feeder ID, edit file piaware2.conf:"
+echo -e "(1) For 1st feeder: To add feeder ID, edit file piaware.conf:"
 echo -e "sudo nano /etc/piaware.conf"
 echo -e "Copy-paste following line at the end of this file"
 echo -e "feeder-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 echo -e "(replace xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx by actual feeder id)\n"
-echo -e "(2) For 2nd feeder add feeder ID, edit file piaware2.conf:"
+echo -e "(2) For 2nd feeder: To add feeder ID, edit file piaware2.conf:"
 echo -e "sudo nano /etc/piaware2.conf"
 echo -e "Copy-paste following line at the end of this file"
 echo -e "feeder-id yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy"
