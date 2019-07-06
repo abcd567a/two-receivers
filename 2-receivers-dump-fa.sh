@@ -81,7 +81,7 @@ exec /usr/bin/dump1090-fa \
 # exec failed, do not restart
 exit 64
 EOT
-
+sudo chmod 755 $STARTUP_FILE_dump
 
 echo -e "\e[33mENABLING AUTO STARTUP....\e[39m"
 sudo systemctl enable dump1090-fa2
