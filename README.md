@@ -16,7 +16,14 @@ unplug and replug both dongles.
 
 **(3) Run the following  bash command:**
 
-`sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/two-receivers/master/2-receivers.sh)"`
+Alternate 1: To install two receivers using dump1090-fa:
+
+`sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/two-receivers/master/2-receivers-dump-fa.sh)"`
+
+Alternate 2: To install two receivers using dump1090-mutability ver 1.15~dev:
+
+`sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/two-receivers/master/2-receivers-dump-mutab.sh)"`
+
 
 **(4) Add piaware feeder-id for 2 stations**
 
