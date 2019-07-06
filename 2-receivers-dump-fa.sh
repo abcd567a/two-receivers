@@ -51,7 +51,7 @@ echo ""
 echo -e "\e[33m(2) Creating dump1090-fa2 startup file......\e[39m"
 STARTUP_FILE_dump=/usr/share/dump1090-fa/start-dump1090-fa2
 sudo touch $STARTUP_FILE_dump
-sudo chmod +x $STARTUP_FILE_dump
+sudo chmod 766 $STARTUP_FILE_dump
 sudo cat <<\EOT > $STARTUP_FILE_dump
 #!/bin/sh
 # Helper script that reads /etc/default/dump1090-fa2
