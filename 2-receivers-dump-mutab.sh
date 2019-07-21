@@ -45,7 +45,7 @@ echo -e "\e[33m(5) Creating lighttpd integration of dump1090-mutability2....\e[3
 
 sudo cp /etc/lighttpd/conf-available/89-dump1090.conf  /etc/lighttpd/conf-available/89-dump1090-2.conf
 
-sudo sed -i 's/dump1090\//dump1090-2\//' /etc/lighttpd/conf-available/89-dump1090-2.conf
+sudo sed -i 's/dump1090\//dump1090-2\//g' /etc/lighttpd/conf-available/89-dump1090-2.conf
 sudo sed -i 's/dump1090\$/dump1090-2\$/' /etc/lighttpd/conf-available/89-dump1090-2.conf
 sudo sed -i 's/\/run\/dump1090-mutability\//\/run\/dump1090-mutability2\//' /etc/lighttpd/conf-available/89-dump1090-2.conf
 sudo sed -i 's/server.stat-cache-engine/#server.stat-cache-engine/' /etc/lighttpd/conf-available/89-dump1090-2.conf 
