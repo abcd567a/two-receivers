@@ -2,9 +2,9 @@
 
 Installs two independent piaware receivers on one Pi
 
-**(1) Write Raspbian to microSD card, power-up**
+### (1) Write Raspbian to microSD card, power-up
 
-**(2) Serialize dongles as follows**
+### (2) Serialize dongles as follows
 
 `sudo apt install rtl-sdr`
 
@@ -14,18 +14,18 @@ Installs two independent piaware receivers on one Pi
 
 unplug and replug both dongles.
 
-**(3) Run the following  bash command:**
+### (3) Run the following  bash command:
 
-Alternate 1: To install two receivers using dump1090-fa:
+**Alternate 1: To install two receivers using dump1090-fa:**
 
 `sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/two-receivers/master/2-receivers-dump-fa.sh)"`
 
-Alternate 2: To install two receivers using dump1090-mutability ver 1.15~dev:
+**Alternate 2: To install two receivers using dump1090-mutability ver 1.15~dev:**
 
 `sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/two-receivers/master/2-receivers-dump-mutab.sh)"`
 
 
-**(4) Add piaware feeder-id for 2 stations**
+### (4) Add piaware feeder-id for 2 stations
 
 **First station:** 
 
@@ -45,7 +45,7 @@ Copy-paste following line at the end
 
 Save file (Ctrl+o) and close file (Ctrl+x)
 
-**(5) REBOOT Pi**
+### (5) REBOOT Pi
 
 .
 .
