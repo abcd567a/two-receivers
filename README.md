@@ -52,5 +52,5 @@ Save file (Ctrl+o) and close file (Ctrl+x)
 
 ![BLOCK DIAGRAM](https://i.postimg.cc/FFW27Smf/1-Pi-2-Receivers-c.png)
 
-
+.
 
