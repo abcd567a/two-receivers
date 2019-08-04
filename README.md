@@ -21,6 +21,7 @@ unplug and replug both dongles. </br>
 **First station:**  </br>
 `sudo piaware-config feeder-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` </br>
 (replace xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx by actual feeder id of 1st feeder) </br>
+
 **Second station:** </br>
 `sudo nano /etc/piaware2.conf` </br>
 Copy-paste following line at the end </br>
@@ -29,8 +30,6 @@ Copy-paste following line at the end </br>
 Save file (Ctrl+o) and close file (Ctrl+x) </br>
 ### (5) REBOOT Pi </br>
 
-.
-.
 
 ### Block Diagram using dump1090-fa
 ![dump1090-fa](https://raw.githubusercontent.com/abcd567a/two-receivers/master/images/1-Pi-2-Receivers-c.png)
