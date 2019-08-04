@@ -82,7 +82,7 @@ After=dump1090-fa2.service network-online.target time-sync.target
 [Service]
 User=piaware
 RuntimeDirectory=piaware2
-StandardOutput=file:/var/log/piaware2.log
+#StandardOutput=file:/var/log/piaware2.log
 ExecStart=/usr/bin/piaware -p %t/piaware2/piaware.pid -plainlog -statusfile %t/piaware2/status.json -configfile /etc/piaware2.conf -cachedir /var/cache/piaware2  
 ExecReload=/bin/kill -HUP $MAINPID
 Type=simple
