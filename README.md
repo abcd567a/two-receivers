@@ -1,6 +1,6 @@
 # 1 Pi 2 RECEIVERS 
 
-Installs two independent piaware receivers on one Pi </br>
+## Installs two independent piaware receivers on one Pi </br>
 
 ### (1) Write Raspbian to microSD card, power-up </br>
 ### (2) Serialize dongles as follows </br>
@@ -12,9 +12,10 @@ unplug and replug both dongles. </br>
 ### (3) Run the following  bash command: </br>
 
 **Alternate 1: To install two receivers using dump1090-fa:** </br>
-`sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/two-receivers/master/2-receivers-dump-fa.sh)"` </br>
+`sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/two-receivers/master/2-receivers-dump-fa.sh)"` 
+
 **Alternate 2: To install two receivers using dump1090-mutability ver 1.15~dev:** </br>
-`sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/two-receivers/master/2-receivers-dump-mutab.sh)"` </br>
+`sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/two-receivers/master/2-receivers-dump-mutab.sh)"` 
 
 ### (4) Add piaware feeder-id for 2 stations </br>
 **First station:**  </br>
