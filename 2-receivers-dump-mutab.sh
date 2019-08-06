@@ -82,7 +82,7 @@ After=dump1090-fa2.service network-online.target time-sync.target
 [Service]
 User=piaware
 RuntimeDirectory=piaware2
-#StandardOutput=file:/var/log/piaware2.log
+SyslogIdentifier=piaware2
 ExecStart=/usr/bin/piaware -p %t/piaware2/piaware.pid -plainlog -statusfile %t/piaware2/status.json -configfile /etc/piaware2.conf -cachedir /var/cache/piaware2  
 ExecReload=/bin/kill -HUP $MAINPID
 Type=simple
@@ -96,6 +96,9 @@ WantedBy=default.target
 EOT
 
 sudo chmod 644 $SERVICE_FILE_piaware
+echo ""
+echo -e "\e[33m(6) Creating /var/log/piaware2.log entry in /etc/rsyslog.d/piaware.conf file......\e[39m"
+sudo sed -i '/& stop/i\else if $programname == "piaware2" then /var/log/piaware2.log' /etc/rsyslog.d/piaware.conf
 echo ""
 echo -e "\e[33m(6) Creating piaware2 Config file......\e[39m"
 CONFIG_FILE_piaware=/etc/piaware2.conf
