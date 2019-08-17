@@ -114,7 +114,7 @@ allow-manual-updates yes
 receiver-type other
 receiver-port 31005
 receiver-host 127.0.0.1
-mlat-results-format beast,connect,localhost:31104
+mlat-results-format beast,connect,localhost:31104 beast,listen,31105 ext_basestation,listen,31106
 EOT
 
 sudo chmod 644 $CONFIG_FILE_piaware
