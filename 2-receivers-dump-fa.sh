@@ -1,7 +1,7 @@
 #!/bin/bash
 echo  -e "\e[33mSetting up piaware repository....\e[39m"
-wget http://flightaware.com/adsb/piaware/files/packages/pool/piaware/p/piaware-support/piaware-repository_3.7.1_all.deb 
-sudo dpkg -i piaware-repository_3.7.1_all.deb 
+wget http://flightaware.com/adsb/piaware/files/packages/pool/piaware/p/piaware-support/piaware-repository_3.7.2_all.deb 
+sudo dpkg -i piaware-repository_3.7.2_all.deb 
 sudo apt-get update 
 echo  -e "\e[33mInstalling piaware .....\e[39m"
 sudo apt-get install -y piaware 
