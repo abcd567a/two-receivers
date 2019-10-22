@@ -2,13 +2,13 @@
 
 ## Installs two independent piaware receivers on one Pi </br>
 
-### (1) Write Raspbian to microSD card, power-up </br>
+### (1) Write Raspbian image to microSD card, enable SSH, enable WiFi (if needed), Power-up </br>
 ### (2) Serialize dongles as follows </br>
 `sudo apt install rtl-sdr` </br>
 `rtl_eeprom -d 0 -s 00000101` </br>
 `rtl_eeprom -d 1 -s 00000102` </br>
 
-unplug and replug both dongles. </br>
+**IMPORTANT:** After completing above commands, unplug and then replug both dongles. </br>
 ### (3) Run the following  bash command: </br>
 
 **Alternate 1: To install two receivers using dump1090-fa:** </br>
@@ -30,6 +30,28 @@ Copy-paste following line at the end </br>
 Save file (Ctrl+o) and close file (Ctrl+x) </br>
 ### (5) REBOOT Pi </br>
 
+### POST INSTALL COMMANDS (to restart & check status) </br>
+**piaware** </br>
+
+`sudo systemctl restart piaware ` </br>
+`sudo systemctl status piaware ` </br>
+
+`sudo systemctl restart piaware2 ` </br>
+`sudo systemctl status piaware2 ` </br></br>
+**dump1090-fa** </br>
+
+`sudo systemctl restart dump1090-fa ` </br>
+`sudo systemctl status dump1090-fa ` </br>
+
+`sudo systemctl restart dump1090-fa2 ` </br>
+`sudo systemctl status dump1090-fa2 ` </br></br>
+**dump1090-mutability** </br>
+
+`sudo systemctl restart dump1090-mutability ` </br>
+`sudo systemctl status dump1090-mutability ` </br>
+
+`sudo systemctl restart dump1090-mutability2 ` </br>
+`sudo systemctl status dump1090-mutability2 ` </br>
 
 ### Block Diagram using dump1090-fa
 ![dump1090-fa](https://raw.githubusercontent.com/abcd567a/two-receivers/master/images/1-Pi-2-Receivers-c.png)
