@@ -128,6 +128,11 @@ echo "Enabling & starting piaware2"
 sudo systemctl enable piaware2
 sudo systemctl start piaware2
 
+`sudo systemctl restart dump1090-mutability`
+`sudo systemctl restart dump1090-mutability2`
+`sudo systemctl restart piaware`
+`sudo systemctl restart piaware2`
+
 echo -e "\e[32m===============\e[39m"
 echo -e "\e[32mALL DONE !\e[39m"
 echo -e "\e[32m===============\e[39m"
