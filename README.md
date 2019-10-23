@@ -4,8 +4,13 @@
 
 ### (1) Write Raspbian image to microSD card, enable SSH, enable WiFi (if needed), Power-up </br>
 ### (2) Serialize dongles as follows </br>
-`sudo apt install rtl-sdr` </br>
-`rtl_eeprom -d 0 -s 00000101` </br>
+(a) Plug-in both DVB-T dongles into RPi </br></br>
+(b) Issue following command to install serialization software: </br>
+`sudo apt install rtl-sdr` </br></br>
+(c) Issue following commands. Say yes when asked for confirmation to chang serial number. </br></br>
+To serialize first dongle: </br>
+`rtl_eeprom -d 0 -s 00000101` </br></br>
+To serialize second dongle: </br>
 `rtl_eeprom -d 1 -s 00000102` </br>
 
 **IMPORTANT:** After completing above commands, unplug and then replug both dongles. </br>
