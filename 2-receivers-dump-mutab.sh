@@ -56,8 +56,8 @@ sudo service lighttpd force-reload
 
 
 echo -e "\e[33m(2) Installing Piaware data feeder using package from Flightaware....\e[39m"
-wget http://flightaware.com/adsb/piaware/files/packages/pool/piaware/p/piaware-support/piaware-repository_3.7.2_all.deb 
-sudo dpkg -i piaware-repository_3.7.2_all.deb 
+wget http://flightaware.com/adsb/piaware/files/packages/pool/piaware/p/piaware-support/piaware-repository_3.8.0_all.deb 
+sudo dpkg -i piaware-repository_3.8.0_all.deb 
 sudo apt-get update 
 echo  -e "\e[33mInstalling piaware .....\e[39m"
 sudo apt-get install -y piaware 
