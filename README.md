@@ -1,10 +1,11 @@
 # 1 Pi 2 RECEIVERS 
 
-## Installs two independent piaware receivers on one Pi </br>
+## Installs two independent piaware receivers on one RPi </br>
 
-## Please do NOT use a microSD card which already has dump1090-mutability or dump1090-fa installed. This script requires a fresh Raspbian image written to microSD card. The script will itself install dump1090 (mutability or flightwaware, whichever you choose). </br>
+## Please do NOT use a microSD card which already has dump1090-mutability or dump1090-fa installed. 
+## This script requires a fresh 32-bit Raspberry Pi OS image written to microSD card. The script will itself install dump1090 (mutability or flightwaware, whichever you choose). </br>
 
-### (1) Write Raspbian image to microSD card, enable SSH, enable WiFi (if needed), Power-up </br>
+### (1) Write Raspberry Pi OS (32-bit) to microSD card, enable SSH, enable WiFi (if needed), Power-up </br>
 ### (2) Serialize dongles as follows </br>
 (a) Plug-in both DVB-T dongles into RPi </br></br>
 (b) Issue following command to install serialization software: </br>
