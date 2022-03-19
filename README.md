@@ -12,9 +12,9 @@
 `sudo apt install rtl-sdr` </br></br>
 (c) Issue following commands. Say yes when asked for confirmation to chang serial number. </br></br>
 To serialize first dongle: </br>
-`rtl_eeprom -d 0 -s 00000101` </br></br>
+`rtl_eeprom -d 0 -s 101` </br></br>
 To serialize second dongle: </br>
-`rtl_eeprom -d 1 -s 00000102` </br>
+`rtl_eeprom -d 1 -s 102` </br>
 
 **IMPORTANT:** After completing above commands, unplug and then replug both dongles. </br>
 ### (3) Run the following  bash command: </br>
