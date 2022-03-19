@@ -2,12 +2,11 @@
 
 echo -e "\e[33m(1) Building and installing dump1090-mutability ver 1.15~dev from source code....\e[39m"
 sudo apt update
-sudo apt install -y libusb-1.0-0 librtlsdr0 lighttpd 
-sudo wget -O ${PWD}/dump1090-mutability_1.15_dev_armhf.deb https://github.com/abcd567a/dump1090/releases/download/v1/dump1090-mutability_1.15_dev_armhf.deb
-sudo dpkg -i dump1090-mutability_1.15_dev_armhf.deb
-sudo wget -O /etc/udev/rules.d/rtl-sdr.rules "https://raw.githubusercontent.com/osmocom/rtl-sdr/master/rtl-sdr.rules"  
+sudo apt install -y dump1090-mutability
+
 sudo dpkg-reconfigure dump1090-mutability
-echo -e "\e[32mdump1090-mutability ver 1.15~dev installed....\e[39m"
+sudo usermod -a -G plugdev dump1090 
+echo -e "\e[32mdump1090-mutability DEB_VER installed....\e[39m"
 echo ""
 echo -e "\e[32mCreating necessary files for 2nd instance of dump1090-mutability....\e[39m"
 echo ""
@@ -20,8 +19,8 @@ echo ""
 echo -e "\e[33m(4) Creating config file for dump1090-mutability2....\e[39m"
 sudo cp /etc/default/dump1090-mutability  /etc/default/dump1090-mutability2
 sudo sed -i '/LOGFILE=/c\LOGFILE="/var/log/dump1090-mutability2.log"'  /etc/default/dump1090-mutability2
-sudo sed -i '/DEVICE=/c\DEVICE=00000101'  /etc/default/dump1090-mutability
-sudo sed -i '/DEVICE=/c\DEVICE=00000102'  /etc/default/dump1090-mutability2
+sudo sed -i '/DEVICE=/c\DEVICE=101'  /etc/default/dump1090-mutability
+sudo sed -i '/DEVICE=/c\DEVICE=102'  /etc/default/dump1090-mutability2
 sudo sed -i 's/30001/31001/'  /etc/default/dump1090-mutability2
 sudo sed -i 's/30002/31002/'  /etc/default/dump1090-mutability2
 sudo sed -i 's/30003/31003/'  /etc/default/dump1090-mutability2
@@ -34,7 +33,7 @@ echo -e "\e[32mTo avoid conflict between two instances of dump1090-mutability,\e
 echo -e "\e[32mthe 2nd instance has been configured for following Port numbers:\e[39m"
 echo -e "\e[32mri-port: 31001\nro-port: 31002\nsbs-port: 31003\nbi-port: 31004,31104\nbo-port: 31005\e[39m"
 echo ""
-echo -e "\e[33mdongle serial # 00000101 for 1st instance\ndongle serial # 00000102 for 2nd instance\e[39m"
+echo -e "\e[33mdongle serial # 101 for 1st instance\ndongle serial # 102 for 2nd instance\e[39m"
 echo ""
 
 sudo update-rc.d dump1090-mutability2 defaults  
