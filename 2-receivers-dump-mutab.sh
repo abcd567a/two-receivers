@@ -3,9 +3,9 @@
 echo -e "\e[33m(1) Building and installing dump1090-mutability EB_VER ....\e[39m"
 sudo apt update
 sudo apt install -y dump1090-mutability
-
-sudo dpkg-reconfigure dump1090-mutability
 sudo usermod -a -G plugdev dump1090 
+sudo dpkg-reconfigure dump1090-mutability
+
 echo -e "\e[32mdump1090-mutability EB_VER installed....\e[39m"
 echo ""
 echo -e "\e[32mCreating necessary files for 2nd instance of dump1090-mutability....\e[39m"
