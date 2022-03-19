@@ -14,7 +14,7 @@ echo -e "\e[32mInstallation of Piaware completed....\e[39m"
 echo  -e "\e[33mStarting installation of dump1090-fa....\e[39m"
 sudo apt-get install -y dump1090-fa
 
-sudo sed -i 's/^RECEIVER_SERIAL=.*/RECEIVER_SERIAL=0000101/' /etc/default/dump1090-fa
+sudo sed -i 's/^RECEIVER_SERIAL=.*/RECEIVER_SERIAL=101/' /etc/default/dump1090-fa
 
 
 echo -e "\e[32mPiaware and dump1090-fa Installed and configured......\e[39m"
@@ -182,7 +182,7 @@ ENABLED2=yes
 # SDR device type. Use "none" for a net-only configuration
 RECEIVER2=rtlsdr
 # serial number or device index of device to use (only needed if there is more than one SDR connected)
-RECEIVER_SERIAL2=00000102
+RECEIVER_SERIAL2=102
 # Initial receiver gain, in dB. If adaptive gain is enabled (see below) the actual gain
 # may change over time
 RECEIVER_GAIN2=60
