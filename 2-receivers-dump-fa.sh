@@ -277,7 +277,7 @@ url.redirect += (
   "^/skyaware2$" => "/skyaware/"
 )
 
-# Listen on port 8080 and serve the map there, too.
+# Listen on port 8181 and serve the map there, too.
 $SERVER["socket"] == ":8181" {
   alias.url += (
     "/data/" => "/run/dump1090-fa2/",
