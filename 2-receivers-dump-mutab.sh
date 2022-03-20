@@ -4,7 +4,7 @@ echo -e "\e[33m(1) Installing dump1090-mutability EB_VER ....\e[39m"
 sudo apt update
 sudo apt install -y dump1090-mutability
 sudo usermod -a -G plugdev dump1090 
-sudo dpkg-reconfigure dump1090-mutability
+#sudo dpkg-reconfigure dump1090-mutability
 
 echo -e "\e[32mdump1090-mutability EB_VER installed....\e[39m"
 echo ""
