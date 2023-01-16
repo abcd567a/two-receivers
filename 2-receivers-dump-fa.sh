@@ -1,5 +1,5 @@
 #!/bin/bash 
-PIAWARE_VER=7.2
+PIAWARE_VER=8.2
 echo  -e "\e[33mSetting up piaware repository....\e[39m"
 wget https://flightaware.com/adsb/piaware/files/packages/pool/piaware/p/piaware-support/piaware-repository_${PIAWARE_VER}_all.deb
 sudo dpkg -i piaware-repository_${PIAWARE_VER}_all.deb
