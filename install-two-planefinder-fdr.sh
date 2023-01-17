@@ -128,6 +128,7 @@ sudo dpkg -i ${CLIENT_PKG}
 echo -e "\e[01;32mCreating 2nd copy of linux binary....\e[39m"
 sudo cp /usr/bin/pfclient /usr/bin/pfclient2
 sudo systemctl restart pfclient2
+sudo systemctl restart pfclient
 
 echo " "
 
