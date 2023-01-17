@@ -137,10 +137,10 @@ echo -e "\e[01;32mConfigure them as follows:\e[39m"
 echo " "
 echo -e "\e[01;31mCAUTION: Do NOT use same share-code in both instances \e[39m"
 echo " "
-echo -e "\e[01;33mFeeder 1:\e[39m In Browser, go to page <IP-of-Pi>:\e[01;33m30053\e[39m and configure >
+echo -e "\e[01;33mFeeder 1:\e[39m In Browser, go to page <IP-of-Pi>:\e[01;33m30053\e[39m and configure \e[39m"
 echo -e "\e[01;33mFeeder 1:\e[39m Use host 127.0.0.1 port \e[01;33m30005 \e[39m"
 echo " "
-echo -e "\e[01;35mFeeder 2:\e[39m In Browser, go to page <IP-of-Pi>:\e[01;35m30063\e[39m and configure >
+echo -e "\e[01;35mFeeder 2:\e[39m In Browser, go to page <IP-of-Pi>:\e[01;35m30063\e[39m and configure \e[39m"
 echo -e "\e[01;35mFeeder 2:\e[39m Use host 127.0.0.1 port \e[01;35m31005 \e[39m"
 
 echo " "
