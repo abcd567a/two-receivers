@@ -1,5 +1,15 @@
 #!/bin/bash
 
+echo -e "\e[32mInstalling fr24feed package...\e[39m"
+
+sudo bash -c "$(wget -O - http://repo.feed.flightradar24.com/install_fr24_rpi.sh)"
+
+sudo systemctl restart fr24feed
+
+echo -e "\e[32mFlightradar24 First feeder Installed and configured......\e[39m"
+
+read -rsp $'Press any key to start creation of files for 2nd instance...\n' -n1 key
+
 echo -e "\e[32mCreating necessary files for 2nd instance of fr24feed......\e[39m"
 
 CONFIG_FILE=/etc/fr24feed.ini
@@ -142,11 +152,6 @@ sudo chmod +x ${STATUS_FILE2}
 
 echo -e "\e[32mCreation of necessary files of 2nd instance \"fr24feed2\" completed...\e[39m"
 
-echo -e "\e[32mInstalling fr24feed package...\e[39m"
-
-sudo bash -c "$(wget -O - http://repo.feed.flightradar24.com/install_fr24_rpi.sh)"
-
-sudo systemctl restart fr24feed
 sudo systemctl restart fr24feed2
 
 echo " "
@@ -169,4 +174,4 @@ echo " "
 echo -e "\e[01;32m(2) Check Status...\e[39m"
 echo -e "\e[01;33m    For 1st Copy of fr24feed:   sudo fr24feed-status  \e[39m"
 echo -e "\e[01;35m    For 2nd Copy of fr24feed:   sudo fr24feed2-status  \e[39m"
-echo " "
+
