@@ -7,9 +7,9 @@ sudo touch ${CONFIG_FILE}
 sudo chmod 666 ${CONFIG_FILE}
 echo "Writing code to config file fr24feed.ini"
 /bin/cat <<EOM >${CONFIG_FILE}
-receiver="beast-tcp"
+receiver="avr-tcp"
 fr24key="xxxxxxxxxxxxxxxx"
-host="127.0.0.1:30005"
+host="127.0.0.1:30002"
 bs="no"
 raw="no"
 logmode="1"
@@ -25,9 +25,9 @@ sudo touch ${CONFIG_FILE2}
 sudo chmod 666 ${CONFIG_FILE2}
 echo "Writing code to config file fr24feed2.ini"
 /bin/cat <<EOM >${CONFIG_FILE2}
-receiver="beast-tcp"
+receiver="avr-tcp"
 fr24key="xxxxxxxxxxxxxxxx"
-host="127.0.0.1:31005"
+host="127.0.0.1:31002"
 bs="no"
 raw="no"
 logmode="1"
