@@ -20,10 +20,14 @@ To serialize second dongle: </br>
 ## (3) Run the following  bash command: </br>
 
 ### Alternate 1: To install two receivers using dump1090-fa: </br>
-`sudo bash -c "$(wget -O - https://github.com/abcd567a/two-receivers/raw/master/2-receivers-dump-fa.sh)"  ` 
+```
+sudo bash -c "$(wget -O - https://github.com/abcd567a/two-receivers/raw/master/2-receivers-dump-fa.sh)"  
+``` 
 </br></br>
 ### Alternate 2: To install two receivers using dump1090-mutability EB_VER: </br>
-`sudo bash -c "$(wget -O - https://github.com/abcd567a/two-receivers/raw/master/2-receivers-dump-mutab.sh)"  ` 
+```
+sudo bash -c "$(wget -O - https://github.com/abcd567a/two-receivers/raw/master/2-receivers-dump-mutab.sh)"  
+``` 
 
 ## (4) Add piaware feeder-id for 2 stations </br>
 **First station:**  </br>
@@ -65,18 +69,24 @@ Save file (Ctrl+o) and close file (Ctrl+x) </br>
 
 ## (6) OPTIONAL
 ### (6.1) Add Biastee control for RTL-SDR V3 Dongle (on dump1090-fa & dump1090-fa2 )
-`sudo bash -c "$(wget -O - https://github.com/abcd567a/two-receivers/raw/master/install-biastee-dump1090-fa.sh)"  `
+```
+sudo bash -c "$(wget -O - https://github.com/abcd567a/two-receivers/raw/master/install-biastee-dump1090-fa.sh)"  
+```
 
 
 </br>
 
 ### (6.2) Install two instances of Flightradar24 Feeder 
-`sudo bash -c "$(wget -O - https://github.com/abcd567a/two-receivers/raw/master/install-two-fr24feed.sh)" `
+```
+sudo bash -c "$(wget -O - https://github.com/abcd567a/two-receivers/raw/master/install-two-fr24feed.sh)"  
+```
 
 </br>
 
 ### (6.3) Install two instances of Planefinder Feeder 
-`sudo bash -c "$(wget -O - https://github.com/abcd567a/two-receivers/raw/master/install-two-planefinder-fdr.sh)"  `
+```
+sudo bash -c "$(wget -O - https://github.com/abcd567a/two-receivers/raw/master/install-two-planefinder-fdr.sh)"  
+```
 
 </br></br>
 
