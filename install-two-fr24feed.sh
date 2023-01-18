@@ -6,10 +6,10 @@ CONFIG_FILE=/etc/fr24feed.ini
 sudo touch ${CONFIG_FILE}
 sudo chmod 666 ${CONFIG_FILE}
 echo "Writing code to config file fr24feed.ini"
-/bin/cat <<EOM >${CONFIG_FILE}
+/bin/cat << \EOM >${CONFIG_FILE}
 receiver="avr-tcp"
-fr24key="xxxxxxxxxxxxxxxx"
 host="127.0.0.1:30002"
+fr24key="xxxxxxxxxxxxxxxx"
 bs="no"
 raw="no"
 logmode="1"
@@ -24,10 +24,10 @@ CONFIG_FILE2=/etc/fr24feed2.ini
 sudo touch ${CONFIG_FILE2}
 sudo chmod 666 ${CONFIG_FILE2}
 echo "Writing code to config file fr24feed2.ini"
-/bin/cat <<EOM >${CONFIG_FILE2}
+/bin/cat << \EOM >${CONFIG_FILE2}
 receiver="avr-tcp"
-fr24key="xxxxxxxxxxxxxxxx"
 host="127.0.0.1:31002"
+fr24key="xxxxxxxxxxxxxxxx"
 bs="no"
 raw="no"
 logmode="1"
@@ -42,7 +42,7 @@ SERVICE_FILE2=/etc/systemd/system/fr24feed2.service
 sudo touch ${SERVICE_FILE2}
 sudo chmod 666 ${SERVICE_FILE2}
 
-/bin/cat <<EOM >${SERVICE_FILE2}
+/bin/cat << \EOM >${SERVICE_FILE2}
 [Unit]
 Description=Flightradar24 Feeder2
 After=network-online.target
@@ -55,8 +55,9 @@ RuntimeDirectory=fr24feed2
 RuntimeDirectoryMode=0755
 ExecStartPre=-/bin/mkdir -p /var/log/fr24feed2
 ExecStartPre=-/bin/mkdir -p /run/fr24feed2
-ExecStartPre=-/bin/chown fr24:fr24 /run/fr24feed2 /var/log/fr24feed2
-ExecStart=/usr/bin/fr24feed  --config-file=/etc/fr24feed2.ini
+ExecStartPre=-/bin/touch /dev/shm/decoder2.txt
+ExecStartPre=-/bin/chown fr24:fr24 /dev/shm/decoder2.txt /run/fr24feed2 /var/log/fr24feed2
+ExecStart=/usr/bin/fr24feed --config-file=/etc/fr24feed2.ini --monitor-file=/dev/shm/decoder2.txt
 User=fr24
 PermissionsStartOnly=true
 StandardOutput=null
@@ -69,6 +70,75 @@ sudo chmod 644 ${SERVICE_FILE2}
 
 sudo systemctl enable fr24feed2
 sudo systemctl start fr24feed2
+
+
+
+STATUS_FILE2=/usr/bin/fr24feed2-status
+sudo touch ${STATUS_FILE2}
+sudo chmod 666 ${STATUS_FILE2}
+
+/bin/cat << \EOM >${STATUS_FILE2}
+
+#!/bin/bash
+
+. /lib/lsb/init-functions
+
+MONITOR_FILE2=/dev/shm/decoder2.txt
+
+systemctl status fr24feed2 2>&1 >/dev/null || {
+    log_failure_msg "FR24-2 Feeder/Decoder Process"
+    exit 0
+}
+
+log_success_msg "FR24-2 Feeder/Decoder Process: running"
+
+DATE=`grep time_update_utc_s= ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
+log_success_msg "FR24-2 Stats Timestamp: $DATE"
+
+
+FEED2=`grep 'feed_status=' ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
+if [ "$FEED2" == "" ]; then
+    FEED2="unknown"
+fi
+
+if [ "$FEED2" == "connected" ]; then
+    MODE2=`grep feed_current_mode= ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
+    log_success_msg "FR24-2 Link: $FEED2 [$MODE2]"
+    FEED2=`grep feed_alias= ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
+    log_success_msg "FR24-2 Radar: $FEED2"
+    FEED2=`grep feed_num_ac_tracked= ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
+    log_success_msg "FR24-2 Tracked AC: ${FEED2}"
+else
+    log_failure_msg "FR24-2 Link: $FEED2"
+fi
+
+RX=`grep rx_connected= ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
+RX1=`grep num_messages= ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
+RX2=`grep num_resyncs= ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
+
+if [ "$RX" == "1" ]; then
+    log_success_msg "Receiver: connected ($RX1 MSGS/$RX2 SYNC)"
+else
+    log_failure_msg "Receiver: down"
+fi
+
+MLAT2=`grep 'mlat-ok=' ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
+if [ "$MLAT2" == "" ]; then
+    MLAT2="unknown"
+fi
+
+if [ "$MLAT2" == "YES" ]; then
+    MLAT_MODE2=`grep mlat-mode= ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
+    log_success_msg "FR24-2 MLAT: ok [$MLAT_MODE2]"
+    MLAT_SEEN2=`grep mlat-number-seen= ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
+    log_success_msg "FR24-2 MLAT AC seen: $MLAT_SEEN2"
+else
+    log_failure_msg "FR24-2 MLAT: not running"
+fi
+
+EOM
+sudo chmod +x ${STATUS_FILE2}
+
 
 echo -e "\e[32mCreation of necessary files of 2nd instance \"fr24feed2\" completed...\e[39m"
 
