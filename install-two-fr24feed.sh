@@ -152,8 +152,6 @@ sudo chmod +x ${STATUS_FILE2}
 
 echo -e "\e[32mCreation of necessary files of 2nd instance \"fr24feed2\" completed...\e[39m"
 
-sudo systemctl restart fr24feed2
-
 echo " "
 echo " "
 echo -e "\e[01;32mInstallation of two instances of fr24feed completed...\e[39m"
