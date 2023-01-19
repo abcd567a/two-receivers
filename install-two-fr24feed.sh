@@ -88,43 +88,43 @@ sudo touch ${STATUS_FILE2}
 sudo chmod 666 ${STATUS_FILE2}
 
 /bin/cat << \EOM >${STATUS_FILE2}
-
 #!/bin/bash
 
 . /lib/lsb/init-functions
 
-MONITOR_FILE2=/dev/shm/decoder2.txt
+MONITOR_FILE=/dev/shm/decoder2.txt
 
 systemctl status fr24feed2 2>&1 >/dev/null || {
     log_failure_msg "FR24-2 Feeder/Decoder Process"
     exit 0
 }
 
-log_success_msg "FR24-2 Feeder/Decoder Process: running"
+log_success_msg "FR24-2
+ Feeder/Decoder Process: running"
 
-DATE=`grep time_update_utc_s= ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
-log_success_msg "FR24-2 Stats Timestamp: $DATE"
+DATE=`grep time_update_utc_s= ${MONITOR_FILE} 2>/dev/null | cut -d'=' -f2`
+log_success_msg "FR24 Stats Timestamp: $DATE"
 
 
-FEED2=`grep 'feed_status=' ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
-if [ "$FEED2" == "" ]; then
-    FEED2="unknown"
+FEED=`grep 'feed_status=' ${MONITOR_FILE} 2>/dev/null | cut -d'=' -f2`
+if [ "$FEED" == "" ]; then
+    FEED="unknown"
 fi
 
-if [ "$FEED2" == "connected" ]; then
-    MODE2=`grep feed_current_mode= ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
-    log_success_msg "FR24-2 Link: $FEED2 [$MODE2]"
-    FEED2=`grep feed_alias= ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
-    log_success_msg "FR24-2 Radar: $FEED2"
-    FEED2=`grep feed_num_ac_tracked= ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
-    log_success_msg "FR24-2 Tracked AC: ${FEED2}"
+if [ "$FEED" == "connected" ]; then
+    MODE=`grep feed_current_mode= ${MONITOR_FILE} 2>/dev/null | cut -d'=' -f2`
+    log_success_msg "FR24-2 Link: $FEED [$MODE]"
+    FEED=`grep feed_alias= ${MONITOR_FILE} 2>/dev/null | cut -d'=' -f2`
+    log_success_msg "FR24-2 Radar: $FEED"
+    FEED=`grep feed_num_ac_tracked= ${MONITOR_FILE} 2>/dev/null | cut -d'=' -f2`
+    log_success_msg "FR24-2 Tracked AC: ${FEED}"
 else
-    log_failure_msg "FR24-2 Link: $FEED2"
+    log_failure_msg "FR24-2 Link: $FEED"
 fi
 
-RX=`grep rx_connected= ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
-RX1=`grep num_messages= ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
-RX2=`grep num_resyncs= ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
+RX=`grep rx_connected= ${MONITOR_FILE} 2>/dev/null | cut -d'=' -f2`
+RX1=`grep num_messages= ${MONITOR_FILE} 2>/dev/null | cut -d'=' -f2`
+RX2=`grep num_resyncs= ${MONITOR_FILE} 2>/dev/null | cut -d'=' -f2`
 
 if [ "$RX" == "1" ]; then
     log_success_msg "Receiver: connected ($RX1 MSGS/$RX2 SYNC)"
@@ -132,16 +132,16 @@ else
     log_failure_msg "Receiver: down"
 fi
 
-MLAT2=`grep 'mlat-ok=' ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
-if [ "$MLAT2" == "" ]; then
-    MLAT2="unknown"
+MLAT=`grep 'mlat-ok=' ${MONITOR_FILE} 2>/dev/null | cut -d'=' -f2`
+if [ "$MLAT" == "" ]; then
+    MLAT="unknown"
 fi
 
-if [ "$MLAT2" == "YES" ]; then
-    MLAT_MODE2=`grep mlat-mode= ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
-    log_success_msg "FR24-2 MLAT: ok [$MLAT_MODE2]"
-    MLAT_SEEN2=`grep mlat-number-seen= ${MONITOR_FILE2} 2>/dev/null | cut -d'=' -f2`
-    log_success_msg "FR24-2 MLAT AC seen: $MLAT_SEEN2"
+if [ "$MLAT" == "YES" ]; then
+    MLAT_MODE=`grep mlat-mode= ${MONITOR_FILE} 2>/dev/null | cut -d'=' -f2`
+    log_success_msg "FR24-2 MLAT: ok [$MLAT_MODE]"
+    MLAT_SEEN=`grep mlat-number-seen= ${MONITOR_FILE} 2>/dev/null | cut -d'=' -f2`
+    log_success_msg "FR24-2 MLAT AC seen: $MLAT_SEEN"
 else
     log_failure_msg "FR24-2 MLAT: not running"
 fi
