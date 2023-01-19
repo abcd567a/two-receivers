@@ -99,8 +99,7 @@ systemctl status fr24feed2 2>&1 >/dev/null || {
     exit 0
 }
 
-log_success_msg "FR24-2
- Feeder/Decoder Process: running"
+log_success_msg "FR24-2 Feeder/Decoder Process: running"
 
 DATE=`grep time_update_utc_s= ${MONITOR_FILE} 2>/dev/null | cut -d'=' -f2`
 log_success_msg "FR24 Stats Timestamp: $DATE"
