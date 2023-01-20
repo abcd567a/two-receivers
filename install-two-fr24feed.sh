@@ -12,24 +12,6 @@ read -rsp $'Press any key to start creation of files for 2nd instance...\n' -n1 
 
 echo -e "\e[32mCreating necessary files for 2nd instance of fr24feed......\e[39m"
 
-CONFIG_FILE=/etc/fr24feed.ini
-sudo touch ${CONFIG_FILE}
-sudo chmod 666 ${CONFIG_FILE}
-echo "Writing code to config file fr24feed.ini"
-/bin/cat << \EOM >${CONFIG_FILE}
-receiver="avr-tcp"
-host="127.0.0.1:30002"
-fr24key="xxxxxxxxxxxxxxxx"
-bs="no"
-raw="no"
-logmode="1"
-logpath="/var/log/fr24feed"
-mlat="yes"
-mlat-without-gps="yes"
-EOM
-sudo chmod 644 ${CONFIG_FILE}
-
-
 CONFIG_FILE2=/etc/fr24feed2.ini
 sudo touch ${CONFIG_FILE2}
 sudo chmod 666 ${CONFIG_FILE2}
@@ -150,25 +132,32 @@ sudo chmod +x ${STATUS_FILE2}
 
 
 echo -e "\e[32mCreation of necessary files of 2nd instance \"fr24feed2\" completed...\e[39m"
+echo -e "\e[32mSignup for 2nd instance \"fr24feed2\" ...\e[39m"
+
+sudo fr24feed --signup --config-file=/etc/fr24feed2.ini
+
+sed -i '/receiver/c\receiver=\"avr-tcp\"' /etc/fr24feed2.ini
+sed -i '/host/c\host=\"127.0.0.1:31002\"' /etc/fr24feed2.ini
+sed -i '/logpath/c\logpath=\"/var/log/fr24feed2\"' /etc/fr24feed2.ini
+sed -i '/raw/c\raw=\"no\"' /etc/fr24feed2.ini
+sed -i '/bs/c\bs=\"no\"' /etc/fr24feed2.ini
+grep -qxF 'host' /etc/fr24feed2.ini || sed -i '2 i\host=\"127.0.0.1:31002\"' /etc/fr24feed2.ini
 
 echo " "
 echo " "
 echo -e "\e[01;32mInstallation of two instances of fr24feed completed...\e[39m"
 echo " "
-echo -e "\e[01;32m(1) Please add your fr24keys in following config files\e[39m"
+echo -e "\e[01;32m(1) Your fr24keys are in following config files\e[39m"
 echo -e "\e[01;33m    For 1st Copy of fr24feed:   sudo nano /etc/fr24feed.ini  \e[39m"
 echo -e "\e[01;35m    For 2nd Copy of fr24feed:   sudo nano /etc/fr24feed2.ini  \e[39m"
 echo " "
-echo -e "\e[01;32m(2) After adding fr24keys, restart...\e[39m"
-echo -e "\e[01;33m    For 1st Copy of fr24feed:   sudo systemctl restart fr24feed  \e[39m"
-echo -e "\e[01;35m    For 2nd Copy of fr24feed:   sudo systemctl restart fr24feed2  \e[39m"
+echo -e "\e[01;33m    Command to restart 1st Copy of fr24feed:   sudo systemctl restart fr24feed  \e[39m"
+echo -e "\e[01;35m    Command to restart 2nd Copy of fr24feed:   sudo systemctl restart fr24feed2  \e[39m"
 
 echo " "
-echo -e "\e[01;32m(2) After restart, check logs...\e[39m"
-echo -e "\e[01;33m    For 1st Copy of fr24feed:   cat /var/log/fr24feed/fr24feed.log  \e[39m"
-echo -e "\e[01;35m    For 2nd Copy of fr24feed:   cat /var/log/fr24feed2/fr24feed.log  \e[39m"
+echo -e "\e[01;33m    Command to check log of 1st Copy of fr24feed:   cat /var/log/fr24feed/fr24feed.log  \e[39m"
+echo -e "\e[01;35m    Command to check log of 2nd Copy of fr24feed:   cat /var/log/fr24feed2/fr24feed.log  \e[39m"
 echo " "
-echo -e "\e[01;32m(2) Check Status...\e[39m"
-echo -e "\e[01;33m    For 1st Copy of fr24feed:   sudo fr24feed-status  \e[39m"
-echo -e "\e[01;35m    For 2nd Copy of fr24feed:   sudo fr24feed2-status  \e[39m"
-
+echo -e "\e[01;33m    Command to check status of 1st Copy of fr24feed:   sudo fr24feed-status  \e[39m"
+echo -e "\e[01;35m    Command to check status of 2nd Copy of fr24feed:   sudo fr24feed2-status  \e[39m"
+echo " "
