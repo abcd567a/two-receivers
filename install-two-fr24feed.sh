@@ -141,7 +141,7 @@ sed -i '/host/c\host=\"127.0.0.1:31002\"' /etc/fr24feed2.ini
 sed -i '/logpath/c\logpath=\"/var/log/fr24feed2\"' /etc/fr24feed2.ini
 sed -i '/raw/c\raw=\"no\"' /etc/fr24feed2.ini
 sed -i '/bs/c\bs=\"no\"' /etc/fr24feed2.ini
-if [[ ! `grep 'host' /etc/fr24feed2.ini` ]]; then echo 'host="127.0.0.1:30002"' >>  /etc/fr24feed2.ini; fi
+if [[ ! `grep 'host' /etc/fr24feed2.ini` ]]; then echo 'host="127.0.0.1:31002"' >>  /etc/fr24feed2.ini; fi
 
 echo " "
 echo " "
