@@ -124,6 +124,7 @@ sudo update-rc.d pfclient2 defaults
 echo -e "\e[01;32mInstalling pfclient package \e[39m"
 wget -O ${PWD}/${CLIENT_PKG}  ${CLIENT_URL}  
 sudo dpkg -i ${CLIENT_PKG}  
+sudo apt -y --fix-broken install
 
 echo -e "\e[01;32mCreating 2nd copy of linux binary....\e[39m"
 sudo cp /usr/bin/pfclient /usr/bin/pfclient2
