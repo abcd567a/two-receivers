@@ -143,6 +143,12 @@ sed -i '/raw/c\raw=\"no\"' /etc/fr24feed2.ini
 sed -i '/bs/c\bs=\"no\"' /etc/fr24feed2.ini
 if [[ ! `grep 'host' /etc/fr24feed2.ini` ]]; then echo 'host="127.0.0.1:31002"' >>  /etc/fr24feed2.ini; fi
 
+sudo systemctl enable fr24feed
+sudo systemctl enable fr24feed2
+
+sudo systemctl restart fr24feed
+sudo systemctl restart fr24feed2
+
 echo " "
 echo " "
 echo -e "\e[01;32mInstallation of two instances of fr24feed completed...\e[39m"
