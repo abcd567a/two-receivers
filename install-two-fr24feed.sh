@@ -19,7 +19,7 @@ echo "Writing code to config file fr24feed2.ini"
 /bin/cat << \EOM >${CONFIG_FILE2}
 receiver="avr-tcp"
 host="127.0.0.1:31002"
-fr24key="xxxxxxxxxxxxxxxx"
+#fr24key="xxxxxxxxxxxxxxxx"
 bs="no"
 raw="no"
 logmode="1"
