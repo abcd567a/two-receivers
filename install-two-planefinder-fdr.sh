@@ -1,7 +1,11 @@
 #!/bin/bash
 
-CLIENT_PKG=pfclient_5.0.161_armhf.deb
-CLIENT_URL=http://client.planefinder.net/${CLIENT_PKG}
+CLIENT_32_PKG=pfclient_5.0.161_armhf.deb
+CLIENT_32_URL=http://client.planefinder.net/${CLIENT_32_PKG}
+
+CLIENT_64_PKG=pfclient_5.1.440_arm64.deb
+CLIENT_64_URL=http://client.planefinder.net/${CLIENT_64_PKG}
+
 
 INIT_FILE2=/etc/init.d/pfclient2
 echo -e "\e[01;32mCreating System-V init file for 2nd instance:" ${INIT_FILE2}  " \e[39m"
@@ -122,9 +126,18 @@ echo -e "\e[01;32mInstalling System-V init file for 2nd instance pfclient2 \e[39
 sudo update-rc.d pfclient2 defaults
 
 echo -e "\e[01;32mInstalling pfclient package \e[39m"
-wget -O ${PWD}/${CLIENT_PKG}  ${CLIENT_URL}  
-sudo dpkg -i ${CLIENT_PKG}  
-sudo apt -y --fix-broken install
+if [[ `uname -m` == aarch64 || `uname -m` == arm64 ]] ; then
+   wget -O ${PWD}/${CLIENT_64_PKG}  ${CLIENT_64_URL}
+   dpkg -i ${CLIENT_64_PKG}
+
+elif  [[ `uname -m` == armhf ]] ; then
+   wget -O ${PWD}/${CLIENT_32_PKG}  ${CLIENT_32_URL}
+   dpkg -i ${CLIENT_32_PKG}
+   apt -y --fix-broken install
+else
+   echo -e "\e[01;31mdont know how to install on" `lsb_release -si`  `lsb_release -sr` `lsb_release -sc` "\e[39m"
+   exit
+fi
 
 echo -e "\e[01;32mCreating 2nd copy of linux binary....\e[39m"
 sudo cp /usr/bin/pfclient /usr/bin/pfclient2
