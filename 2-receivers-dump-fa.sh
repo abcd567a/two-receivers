@@ -139,10 +139,10 @@ else
 
     if [ "$ERROR_CORRECTION2" = "yes" ]; then OPTS2="$OPTS2 --fix"; fi
 
-    if [ -n "$RECEIVER_LAT2" -a -n "$RECEIVER_LON2" ]; then
-        OPTS2="$OPTS2 --lat $RECEIVER_LAT2 --lon $RECEIVER_LON2"
-    elif  [ -n "$PIAWARE_LAT2" -a -n "$PIAWARE_LON2" ]; then
-        OPTS2="$OPTS2 --lat $PIAWARE_LAT2 --lon $PIAWARE_LON2"
+    if [ -n "$RECEIVER_LAT" -a -n "$RECEIVER_LON" ]; then
+        OPTS2="$OPTS2 --lat $RECEIVER_LAT --lon $RECEIVER_LON"
+    elif  [ -n "$PIAWARE_LAT" -a -n "$PIAWARE_LON" ]; then
+        OPTS2="$OPTS2 --lat $PIAWARE_LAT --lon $PIAWARE_LON"
     fi
 
     if [ -n "$MAX_RANGE2" ]; then OPTS2="$OPTS2 --max-range $MAX_RANGE2"; fi
