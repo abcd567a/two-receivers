@@ -1,9 +1,9 @@
 #!/bin/bash
 
-CLIENT_32_PKG=pfclient_5.0.161_armhf.deb
+CLIENT_32_PKG=pfclient_5.3.2_armhf.deb
 CLIENT_32_URL=http://client.planefinder.net/${CLIENT_32_PKG}
 
-CLIENT_64_PKG=pfclient_5.1.440_arm64.deb
+CLIENT_64_PKG=pfclient_5.3.2_arm64.deb
 CLIENT_64_URL=http://client.planefinder.net/${CLIENT_64_PKG}
 
 
