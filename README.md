@@ -40,8 +40,13 @@ Copy-paste following line at the end </br>
 `feeder-id yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy` </br>
 (replace yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy by actual feeder id of 2nd feeder) </br>
 Save file (Ctrl+o) and close file (Ctrl+x) </br>
-## (5) REBOOT Pi </br>
+## (5) REBOOT Pi  </br>
+## (6) AFTER REBOOTING Pi:
+**For dump1090-fa install:** </br>
+If after reboot, the station location & range rings are not NOT displayed, restart dump1090-fa and dump1090-fa2 </br>
 
+**For dump1090-mutability install:** </br>
+The station location & range rings will not NOT be displayed, unless you edit files "/etc/default/dump1090-mutability" and  "/etc/default/dump1090-mutability2", and restart dump1090-mutability and dump1090-mutability2  </br>
 ## POST INSTALL COMMANDS (to restart & check status) </br>
 **piaware** </br>
 
