@@ -4,20 +4,22 @@ echo  -e "\e[33mSetting up piaware repository....\e[39m"
 wget https://www.flightaware.com/adsb/piaware/files/packages/pool/piaware/f/flightaware-apt-repository/flightaware-apt-repository_1.2_all.deb
 sudo dpkg -i flightaware-apt-repository_1.2_all.deb
 sudo apt-get update
-echo  -e "\e[33mInstalling piaware .....\e[39m"
+echo  -e "\e[01;32mInstalling piaware .....\e[0;39m"
+sleep 3
 sudo apt-get install -y piaware
 sudo piaware-config uat-receiver-type none
 sudo piaware-config allow-auto-updates yes
 sudo piaware-config allow-manual-updates yes
 echo -e "\e[32mInstallation of Piaware completed....\e[39m"
 
-echo  -e "\e[33mStarting installation of dump1090-fa....\e[39m"
+echo  -e "\e[01;32mInstalling dump1090-fa....\e[0;39m"
+sleep 3
 sudo apt-get install -y dump1090-fa
 
 sudo sed -i 's/^RECEIVER_SERIAL=.*/RECEIVER_SERIAL=101/' /etc/default/dump1090-fa
 
 
-echo -e "\e[32mPiaware and dump1090-fa Installed and configured......\e[39m"
+echo -e "\e[01;32mPiaware and dump1090-fa Installed and configured......\e[0;39m"
 
 read -rsp $'Press any key to start creation of files for 2nd instance...\n' -n1 key
 
@@ -401,23 +403,20 @@ echo -e "go to following page and claim both NEW Stations"
 echo -e "https://flightaware.com/adsb/piaware/claim"
 echo -e ""
 echo -e "If you have existing feeder-ids, follow steps below:"
-echo -e "(1) For 1st feeder: To add feeder ID, edit file piaware.conf:"
+echo -e "\e[01;32m(1) For 1st feeder: To add feeder ID, edit file piaware.conf:\e[0;39m"
 echo -e "sudo nano /etc/piaware.conf"
 echo -e "Copy-paste following line at the end of this file"
 echo -e "feeder-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 echo -e "(replace xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx by actual feeder id)\n"
-echo -e "Restart piaware"
-echo -e "sudo systemctl restart piaware"
-echo -e "(2) For 2nd feeder: To add feeder ID, edit file piaware2.conf:"
+echo -e "Restart piaware: sudo systemctl restart piaware\n"
+echo -e "\e[01;32m(2) For 2nd feeder: To add feeder ID, edit file piaware2.conf:\e[0;39m"
 echo -e "sudo nano /etc/piaware2.conf"
 echo -e "Copy-paste following line at the end of this file"
 echo -e "feeder-id yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy"
 echo -e "(replace yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy by actual feeder id)\n"
-echo -e "Restart piaware2"
-echo -e "sudo systemctl restart piaware2"
-echo -e "\e[31m(3) Unplug then replug both dongles (if you have not done after serializing),\e[39m\n"
-echo -e "\e[31mthen Reboot RPi\e[39m\n"
+echo -e "Restart piaware2: sudo systemctl restart piaware2"
+echo -e "AFTER restarting piaware2, restart dump1090-fa2: sudo systemctl restart dump1090-fa2 \n"
+echo -e "\e[01;31m(3) Unplug then replug both dongles,then Reboot RPi\e[0;39m\n"
 echo -e "(4) After reboot, go to your browser and check map on following addresses"
 echo -e "http://$(ip route | grep -m1 -o -P 'src \K[0-9,.]*')/skyaware/"
 echo -e "http://$(ip route | grep -m1 -o -P 'src \K[0-9,.]*')/skyaware2/"
-echo ""
