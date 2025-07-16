@@ -43,10 +43,10 @@ Save file (Ctrl+o) and close file (Ctrl+x) </br>
 ## (5) REBOOT Pi  </br>
 ## (6) AFTER REBOOTING Pi:
 **For dump1090-fa install:** </br>
-If after reboot, the station location & range rings are not NOT displayed, restart dump1090-fa and dump1090-fa2 </br>
+If after reboot, the station location & range rings are not NOT displayed on Skyaware Map, restart dump1090-fa and dump1090-fa2 </br>
 
 **For dump1090-mutability install:** </br>
-The station location & range rings will not NOT be displayed, unless you edit files "/etc/default/dump1090-mutability" and  "/etc/default/dump1090-mutability2", and restart dump1090-mutability and dump1090-mutability2  </br>
+The station location & range rings will not NOT be displayed on Map, unless you edit files "/etc/default/dump1090-mutability" and  "/etc/default/dump1090-mutability2", add values to the Latitude & Longitude items, and restart dump1090-mutability and dump1090-mutability2  </br>
 ## POST INSTALL COMMANDS (to restart & check status) </br>
 **piaware** </br>
 
