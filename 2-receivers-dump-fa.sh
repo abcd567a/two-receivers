@@ -1,8 +1,8 @@
 #!/bin/bash 
 PIAWARE_VER=9.0
 echo  -e "\e[33mSetting up piaware repository....\e[39m"
-wget https://www.flightaware.com/adsb/piaware/files/packages/pool/piaware/f/flightaware-apt-repository/flightaware-apt-repository_1.2_all.deb
-sudo dpkg -i flightaware-apt-repository_1.2_all.deb
+wget https://www.flightaware.com/adsb/piaware/files/packages/pool/piaware/f/flightaware-apt-repository/flightaware-apt-repository_1.3_all.deb
+sudo dpkg -i flightaware-apt-repository_1.3_all.deb
 sudo apt-get update
 echo  -e "\e[01;32mInstalling piaware .....\e[0;39m"
 sleep 3
