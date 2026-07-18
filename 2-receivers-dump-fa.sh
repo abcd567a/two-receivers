@@ -1,22 +1,22 @@
 #!/bin/bash 
-PIAWARE_VER=9.0
+
 echo  -e "\e[33mSetting up piaware repository....\e[39m"
 wget https://www.flightaware.com/adsb/piaware/files/packages/pool/piaware/f/flightaware-apt-repository/flightaware-apt-repository_1.3_all.deb
-sudo dpkg -i flightaware-apt-repository_1.3_all.deb
-sudo apt-get update
+dpkg -i flightaware-apt-repository_1.3_all.deb
+apt update
 echo  -e "\e[01;32mInstalling piaware .....\e[0;39m"
 sleep 3
-sudo apt-get install -y piaware
-sudo piaware-config uat-receiver-type none
-sudo piaware-config allow-auto-updates yes
-sudo piaware-config allow-manual-updates yes
+apt install -y piaware
+piaware-config uat-receiver-type none
+piaware-config allow-auto-updates yes
+piaware-config allow-manual-updates yes
 echo -e "\e[32mInstallation of Piaware completed....\e[39m"
 
 echo  -e "\e[01;32mInstalling dump1090-fa....\e[0;39m"
 sleep 3
-sudo apt-get install -y dump1090-fa
+apt install -y dump1090-fa
 
-sudo sed -i 's/^RECEIVER_SERIAL=.*/RECEIVER_SERIAL=101/' /etc/default/dump1090-fa
+sed -i 's/^RECEIVER_SERIAL=.*/RECEIVER_SERIAL=101/' /etc/default/dump1090-fa
 
 
 echo -e "\e[01;32mPiaware and dump1090-fa Installed and configured......\e[0;39m"
@@ -25,9 +25,9 @@ read -rsp $'Press any key to start creation of files for 2nd instance...\n' -n1 
 
 echo -e "\e[33m(1) Creating dump1090-fa2 service file......\e[39m"
 SERVICE_FILE_dump=/lib/systemd/system/dump1090-fa2.service
-sudo touch $SERVICE_FILE_dump
-sudo chmod 666 $SERVICE_FILE_dump
-sudo cat <<\EOT > $SERVICE_FILE_dump
+touch $SERVICE_FILE_dump
+chmod 666 $SERVICE_FILE_dump
+cat <<\EOT > $SERVICE_FILE_dump
 # dump1090-fa2 service for systemd
 [Unit]
 Description=dump1090 ADS-B receiver (FlightAware customization)
@@ -49,13 +49,13 @@ Nice=-5
 WantedBy=default.target
 EOT
 
-sudo chmod 644 $SERVICE_FILE_dump
+chmod 644 $SERVICE_FILE_dump
 echo ""
 echo -e "\e[33m(2) Creating dump1090-fa2 startup file......\e[39m"
 STARTUP_FILE_dump=/usr/share/dump1090-fa/start-dump1090-fa2
-sudo touch $STARTUP_FILE_dump
-sudo chmod 766 $STARTUP_FILE_dump
-sudo cat <<\EOT > $STARTUP_FILE_dump
+touch $STARTUP_FILE_dump
+chmod 766 $STARTUP_FILE_dump
+cat <<\EOT > $STARTUP_FILE_dump
 #!/bin/sh
 
 # Helper script that reads /etc/default/dump1090-fa2
@@ -164,16 +164,16 @@ exec /usr/bin/dump1090-fa --quiet $OPTS2 "$@"
 # exec failed, do not restart
 exit 64
 EOT
-sudo chmod 755 $STARTUP_FILE_dump
+chmod 755 $STARTUP_FILE_dump
 
 echo -e "\e[33mENABLING AUTO STARTUP....\e[39m"
-sudo systemctl enable dump1090-fa2
+systemctl enable dump1090-fa2
 echo ""
 echo -e "\e[33m(3) Creating dump1090-fa2 Config file......\e[39m"
 CONFIG_FILE_dump=/etc/default/dump1090-fa2
-sudo touch $CONFIG_FILE_dump
-sudo chmod 666 $CONFIG_FILE_dump
-sudo cat <<\EOT > $CONFIG_FILE_dump
+touch $CONFIG_FILE_dump
+chmod 666 $CONFIG_FILE_dump
+cat <<\EOT > $CONFIG_FILE_dump
 # dump1090-fa2 configuration
 # This is sourced by /usr/share/dump1090-fa/start-dump1090-fa2 as a
 # shellscript fragment.
@@ -239,13 +239,13 @@ CONFIG_STYLE2=6
 
 EOT
 
-sudo chmod 644 $CONFIG_FILE_dump
+chmod 644 $CONFIG_FILE_dump
 echo ""
 echo -e "\e[33m(4) Creating lighttpd Config file......\e[39m"
 CONFIG_FILE_lighttpd=/etc/lighttpd/conf-available/89-skyaware2.conf
-sudo touch $CONFIG_FILE_lighttpd
-sudo chmod 666 $CONFIG_FILE_lighttpd
-sudo cat <<\EOT > $CONFIG_FILE_lighttpd
+touch $CONFIG_FILE_lighttpd
+chmod 666 $CONFIG_FILE_lighttpd
+cat <<\EOT > $CONFIG_FILE_lighttpd
 # Allows access to the static files that provide the dump1090 map view,
 # and also to the dynamically-generated json parts that contain aircraft
 # data and are periodically written by the dump1090 daemon.
@@ -324,16 +324,16 @@ $HTTP["url"] =~ "^/skyaware2/data/.*\.json$" {
 
 EOT
 
-sudo chmod 644 $CONFIG_FILE_lighttpd
+chmod 644 $CONFIG_FILE_lighttpd
 
-sudo lighty-enable-mod skyaware2
-sudo service lighttpd force-reload
+lighty-enable-mod skyaware2
+service lighttpd force-reload
 echo ""
 echo -e "\e[33m(5) Creating Service file for Piaware 2....\e[39m"
 SERVICE_FILE_piaware=/lib/systemd/system/piaware2.service
 sudo touch $SERVICE_FILE_piaware
-sudo chmod 666 $SERVICE_FILE_piaware
-sudo cat <<\EOT > $SERVICE_FILE_piaware
+chmod 666 $SERVICE_FILE_piaware
+cat <<\EOT > $SERVICE_FILE_piaware
 # piaware uploader service for systemd
 # install in /etc/systemd/system
 [Unit]
@@ -357,16 +357,16 @@ RestartPreventExitStatus=4 6
 WantedBy=default.target
 EOT
 
-sudo chmod 644 $SERVICE_FILE_piaware
+chmod 644 $SERVICE_FILE_piaware
 echo ""
 echo -e "\e[33m(6) Creating /var/log/piaware2.log entry in /etc/rsyslog.d/piaware.conf file......\e[39m"
 sudo sed -i '/& stop/i\else if $programname == "piaware2" then /var/log/piaware2.log' /etc/rsyslog.d/piaware.conf
 echo ""
 echo -e "\e[33m(6) Creating piaware2 Config file......\e[39m"
 CONFIG_FILE_piaware=/etc/piaware2.conf
-sudo touch $CONFIG_FILE_piaware
-sudo chmod 666 $CONFIG_FILE_piaware
-sudo cat <<\EOT > $CONFIG_FILE_piaware
+touch $CONFIG_FILE_piaware
+chmod 666 $CONFIG_FILE_piaware
+cat <<\EOT > $CONFIG_FILE_piaware
 # This file configures piaware and related software.
 # You can edit it directly to view and change settings.
 #
@@ -379,21 +379,21 @@ receiver-host 127.0.0.1
 mlat-results-format beast,connect,localhost:31104 beast,listen,31105 ext_basestation,listen,31106
 EOT
 
-sudo chmod 644 $CONFIG_FILE_piaware
+chmod 644 $CONFIG_FILE_piaware
 
 echo -e "\e[33m((7) Creating directory /var/cache/piaware2 ....\e[39m"
-sudo mkdir /var/cache/piaware2
-sudo chown piaware /var/cache/piaware2
-sudo chown piaware /etc/piaware2.conf
+mkdir /var/cache/piaware2
+chown piaware /var/cache/piaware2
+chown piaware /etc/piaware2.conf
 echo ""
 echo "Enabling & starting piaware2"
-sudo systemctl enable piaware2
-sudo systemctl start piaware2
+systemctl enable piaware2
+systemctl start piaware2
 
-sudo systemctl restart dump1090-fa
-sudo systemctl restart dump1090-fa2
-sudo systemctl restart piaware
-sudo systemctl restart piaware2
+systemctl restart dump1090-fa
+systemctl restart dump1090-fa2
+systemctl restart piaware
+systemctl restart piaware2
 
 echo -e "\e[32m===============\e[39m"
 echo -e "\e[32mALL DONE !\e[39m"
@@ -420,3 +420,4 @@ echo -e "\e[01;31m(3) Unplug then replug both dongles,then Reboot RPi\e[0;39m\n"
 echo -e "(4) After reboot, go to your browser and check map on following addresses"
 echo -e "http://$(ip route | grep -m1 -o -P 'src \K[0-9,.]*')/skyaware/"
 echo -e "http://$(ip route | grep -m1 -o -P 'src \K[0-9,.]*')/skyaware2/"
+echo " "
