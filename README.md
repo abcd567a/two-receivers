@@ -21,7 +21,7 @@ To serialize second dongle: </br>
 
 ### Alternate 1: To install two receivers using dump1090-fa: </br>
 ```
-sudo bash -c "$(wget -O - https://github.com/abcd567a/two-receivers/raw/master/2-receivers-dump-fa.sh)"  
+sudo bash -c "$(wget -O - https://github.com/abcd567a/two-receivers/raw/master/install-2-receivers-dump-fa.sh)"  
 ``` 
 </br></br>
 ### Alternate 2: To install two receivers using dump1090-mutability EB_VER: </br>
